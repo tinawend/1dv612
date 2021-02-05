@@ -1,0 +1,19 @@
+{
+  "name": "1dv612",
+  "version": "1.0.0",
+  "description": "1dv612",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.lnu.se:1dv612/student/tw222eu/assignment.git"
+  },
+  "author": "Tina Wendpaap",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
