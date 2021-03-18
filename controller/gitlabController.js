@@ -20,6 +20,6 @@ gitlabController.auth = async (req, res) => {
       console.log('My token:', token)
     })
   // console.log(parameters)
-  res.send('correct')
+  res.render('gitLab')
 }
 module.exports = gitlabController

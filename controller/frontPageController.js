@@ -1,6 +1,6 @@
 const frontPageController = {}
 
 frontPageController.index = (req, res) => {
-  res.send('hello')
+  res.render('home')
 }
 module.exports = frontPageController
