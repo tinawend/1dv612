@@ -1,2 +1,14 @@
 <p>Login was successfull</p>
-<button>Click here</button>
+
+
+{{#if token}}
+<p>You are signed in</p>
+<p>select a group below:</p>
+{{#each groups}}
+<form action="selectGroup/{{id}}" method="get">
+<button type="submit">{{name}}</button>
+</form>
+{{/each}}
+{{else}}
+<p>not signed in yet</p>
+{{/if}}

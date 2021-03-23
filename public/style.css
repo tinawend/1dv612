@@ -1,0 +1,38 @@
+body {
+    margin-top: 80px;
+    background-color: whitesmoke;
+}
+header {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 60px;
+    width: 100%;
+    opacity: 1;
+    background-color: rgba(82, 80, 80, 0.733);
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 5px;
+}
+
+nav a {
+    padding: 20px; 
+    text-decoration: none;
+}
+
+
+nav	a:link,	nav	a:visited {
+    /* background-color:purple; */
+    color:white;
+}
+
+nav	a:hover, nav a:active {
+    background:linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);
+	background-color:#ff5bb0;
+	border-radius:3px;
+    border:1px solid #ee1eb5;
+    cursor: pointer;
+    color: white;
+}
