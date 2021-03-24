@@ -59,12 +59,13 @@ gitlabController.getSpecificGroup = async (req, res) => {
     name: project.name,
     id: project.id
   }))
-  console.log(subGroups)
-  console.log(projects)
+  // console.log(subGroups)
+  // console.log(projects)
   res.render('spec', { subGroups, projects })
 }
 
 gitlabController.webhook = async (req, res) => {
+  // const io = req.app.get('socketio')
   const token = req.session.token
   const fetchIssues = await fetch(`https://gitlab.lnu.se/api/v4/groups/${req.params.id}/issues`, {
     headers: { Authorization: `Bearer ${token}` }
@@ -74,12 +75,33 @@ gitlabController.webhook = async (req, res) => {
     title: issue.title,
     description: issue.description
   }))
-  // console.log(result)
 
-  if (req.headers['x-gitlab-token'] === 'secretToken123') {
-    console.log(req.body.object_attributes)
-    res.status(200)
-  }
+  // await axios.post('https://hooks.slack.com/services/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', {
+  //   text: 'hello World!'
+  // })
+
   res.render('webhook', { issues })
+}
+
+gitlabController.socket = async (req, res) => {
+  const io = req.app.get('socketio')
+  // if (req.headers['x-gitlab-token'] === 'secretToken123') {
+  console.log(req.body.object_attributes)
+  const issues = {
+    title: req.body.object_attributes.title,
+    name: req.body.user.name,
+    description: req.body.object_attributes.description,
+    state: req.body.object_attributes.state,
+    creationdate: req.body.object_attributes.created_at.substring(0, 10),
+    updated: req.body.object_attributes.updated_at.substring(0, 10),
+    time: req.body.object_attributes.updated_at.substring(11, 19),
+    type: req.body.event_type,
+    id: req.body.object_attributes.iid
+  }
+  io.emit('webhook', issues)
+  // }
+  await axios.post('https://hooks.slack.com/services/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', {
+    text: 'there has been a change on gitlab issues \n Description: ' + req.body.object_attributes.description
+  })
 }
 module.exports = gitlabController

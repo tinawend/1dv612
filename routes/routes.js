@@ -9,4 +9,5 @@ router.get('/auth', gitlabController.auth)
 router.get('/selectGroup', gitlabController.selectGroup)
 router.get('/selectGroup/:id', gitlabController.getSpecificGroup)
 router.get('/selectGroup/:id/webhook', gitlabController.webhook)
+router.post('/selectGroup/:id/webhook', gitlabController.socket)
 module.exports = router

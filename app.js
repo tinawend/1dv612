@@ -1,8 +1,8 @@
 const express = require('express')
 const app = express()
 const port = 4000
-// const server = require('http').createServer(app)
-// const io = require('socket.io')(server)
+const server = require('http').createServer(app)
+const io = require('socket.io')(server)
 const router = require('./routes/routes')
 const session = require('express-session')
 var hbs = require('express-handlebars')
@@ -11,7 +11,7 @@ require('dotenv').config()
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-// app.set('socketio', io)
+app.set('socketio', io)
 
 app.use(express.static('public'))
 // handlebars
@@ -29,9 +29,14 @@ app.use(session({
 
 app.use('/', router)
 
-app.listen(port)
-
+// socket
+// server-side
 // io.on('connection', (socket) => {
-//   console.log('connect')
-//   socket.emit('message', 'You are connected!')
+//   socket.emit('hello', 'world')
 // })
+
+io.on('connection', (socket) => {
+  console.log('connect')
+  socket.emit('message', 'You are connected!')
+})
+server.listen(port)
