@@ -101,7 +101,7 @@ gitlabController.socket = async (req, res) => {
   io.emit('webhook', issues)
   // }
   await axios.post('https://hooks.slack.com/services/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', {
-    text: 'there has been a change on gitlab issues \n Description: ' + req.body.object_attributes.description
+    text: 'there has been a change on gitlab issues \n Type: ' + req.body.event_type + '\nDescription: ' + req.body.object_attributes.description
   })
 }
 module.exports = gitlabController
