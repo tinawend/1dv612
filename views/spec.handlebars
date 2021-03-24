@@ -1,1 +1,12 @@
-<p>Specific Gitlab Group</p>
+<h2>Specific Gitlab Group or Project</h2>
+
+{{#each subGroups}}
+
+<form action="{{id}}/webhook" method="get">
+<button type="submit">{{name}}</button>
+</form>
+{{/each}}
+
+{{#each projects}}
+<p>{{name}}</p>
+{{/each}}
