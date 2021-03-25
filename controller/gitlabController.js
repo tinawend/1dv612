@@ -84,7 +84,7 @@ gitlabController.socket = async (req, res) => {
   }
   io.emit('webhook', issues)
 
-  await axios.post(`${process.env.LINK}`, {
+  await axios.post(`${process.env.LINK_SLACK}`, {
     text: 'there has been a change on gitlab issues \n Type: ' + req.body.event_type + '\nDescription: ' + req.body.object_attributes.description
   })
 }
