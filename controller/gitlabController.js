@@ -3,11 +3,11 @@ const gitlabController = {}
 const fetch = require('node-fetch')
 
 gitlabController.login = (req, res) => {
-  res.redirect(`https://gitlab.lnu.se/oauth/authorize?client_id=${process.env.APPLICATION_ID}&redirect_uri=https://notificationhub-8e213.web.app/auth&response_type=code&state=STATE&scope=api`)
+  res.redirect(`https://gitlab.lnu.se/oauth/authorize?client_id=${process.env.APPLICATION_ID}&redirect_uri=https://notifytw222eu.herokuapp.com/auth&response_type=code&state=STATE&scope=api`)
 }
 
 gitlabController.auth = async (req, res) => {
-  const parameters = `client_id=${process.env.APPLICATION_ID}&client_secret=${process.env.SECRET}&code=${req.query.code}&grant_type=authorization_code&redirect_uri=https://notificationhub-8e213.web.app/auth`
+  const parameters = `client_id=${process.env.APPLICATION_ID}&client_secret=${process.env.SECRET}&code=${req.query.code}&grant_type=authorization_code&redirect_uri=https://notifytw222eu.herokuapp.com/auth`
   axios.post('https://gitlab.lnu.se/oauth/token', parameters)
     .then((_res) => _res.data.access_token)
     .then((token) => {
