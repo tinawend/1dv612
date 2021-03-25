@@ -58,7 +58,6 @@ gitlabController.getSpecificGroup = async (req, res) => {
 }
 
 gitlabController.webhook = async (req, res) => {
-  // const io = req.app.get('socketio')
   const token = req.session.token
   const fetchIssues = await fetch(`https://gitlab.lnu.se/api/v4/groups/${req.params.id}/issues`, {
     headers: { Authorization: `Bearer ${token}` }
@@ -68,10 +67,6 @@ gitlabController.webhook = async (req, res) => {
     title: issue.title,
     description: issue.description
   }))
-
-  // await axios.post('https://hooks.slack.com/services/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', {
-  //   text: 'hello World!'
-  // })
 
   res.render('webhook', { issues })
 }
@@ -93,8 +88,17 @@ gitlabController.socket = async (req, res) => {
   }
   io.emit('webhook', issues)
   // }
-  await axios.post('https://hooks.slack.com/services/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', {
+  const options = {
     text: 'there has been a change on gitlab issues \n Type: ' + req.body.event_type + '\nDescription: ' + req.body.object_attributes.description
-  })
+  }
+  await axios.post('https://hooks.slack.com/services/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', JSON.stringify(options))
+    .then((response) => {
+      console.log('SUCCEEDED: Sent slack webhook: \n', response.data)
+      // resolve(response.data)
+    })
+    .catch((error) => {
+      console.log('FAILED: Send slack webhook', error)
+      // reject(new Error('FAILED: Send slack webhook'))
+    })
 }
 module.exports = gitlabController
