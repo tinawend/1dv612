@@ -1,6 +1,7 @@
+const functions = require('firebase-functions')
 const express = require('express')
 const app = express()
-const port = 4000
+// const port = 4000
 const server = require('http').createServer(app)
 const io = require('socket.io')(server)
 const router = require('./routes/routes')
@@ -35,4 +36,9 @@ io.on('connection', (socket) => {
   console.log('connect')
   socket.emit('message', 'You are connected!')
 })
-server.listen(port)
+// server.listen(port)
+
+// // Create and Deploy Your First Cloud Functions
+// // https://firebase.google.com/docs/functions/write-firebase-functions
+//
+exports.app = functions.https.onRequest(app)
