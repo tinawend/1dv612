@@ -35,4 +35,4 @@ io.on('connection', (socket) => {
   console.log('connect')
   socket.emit('message', 'You are connected!')
 })
-server.listen(port)
+server.listen(process.env.PORT || port)
