@@ -22,19 +22,17 @@ gitlabController.selectGroup = async (req, res) => {
   const fetchGroups = await fetch('https://gitlab.lnu.se/api/v4/groups?min_access_level=40', {
     headers: { Authorization: `Bearer ${token}` }
   })
-  // console.log(token)
+
   const result = await fetchGroups.json()
   const groups = await result.map(group => ({
     name: group.full_name,
     id: group.id
   }))
-  // req.session.ids = { id: groups.map(element => element.id) }
-  // console.log(groups)
+
   res.render('gitLab', { token, groups })
 }
 
 gitlabController.getSpecificGroup = async (req, res) => {
-  // console.log(req.params.id)
   const token = req.session.token
   const fetchSpec = await fetch(`https://gitlab.lnu.se/api/v4/groups/${req.params.id}/subgroups?min_access_level=50`, {
     headers: { Authorization: `Bearer ${token}` }
@@ -52,13 +50,11 @@ gitlabController.getSpecificGroup = async (req, res) => {
     name: project.name,
     id: project.id
   }))
-  // console.log(subGroups)
-  // console.log(projects)
+
   res.render('spec', { subGroups, projects })
 }
 
 gitlabController.webhook = async (req, res) => {
-  // const io = req.app.get('socketio')
   const token = req.session.token
   const fetchIssues = await fetch(`https://gitlab.lnu.se/api/v4/groups/${req.params.id}/issues`, {
     headers: { Authorization: `Bearer ${token}` }
@@ -69,16 +65,11 @@ gitlabController.webhook = async (req, res) => {
     description: issue.description
   }))
 
-  // await axios.post('https://hooks.slack.com/services/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', {
-  //   text: 'hello World!'
-  // })
-
   res.render('webhook', { issues })
 }
 
 gitlabController.socket = async (req, res) => {
   const io = req.app.get('socketio')
-  // if (req.headers['x-gitlab-token'] === 'secretToken123') {
   console.log(req.body.object_attributes)
   const issues = {
     title: req.body.object_attributes.title,
@@ -93,7 +84,7 @@ gitlabController.socket = async (req, res) => {
   }
   io.emit('webhook', issues)
 
-  await axios.post('https://hooks.slack.com/services/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', {
+  await axios.post('https://hooks.slack.com/services/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', {
     text: 'there has been a change on gitlab issues \n Type: ' + req.body.event_type + '\nDescription: ' + req.body.object_attributes.description
   })
 }
