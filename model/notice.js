@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-
+mongoose.set('useCreateIndex', true)
 const NoticeSchema = new Schema({
   title: { type: String },
   name: { type: String },

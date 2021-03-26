@@ -83,12 +83,16 @@ gitlabController.socket = async (req, res) => {
     type: req.body.event_type,
     id: req.body.object_attributes.iid
   }
-  const notice = new Notice(issues)
-  await notice.save()
   io.emit('webhook', issues)
+  const notice = new Notice(issues)
 
   await axios.post(`${process.env.LINK_SLACK}`, {
     text: 'there has been a change on gitlab issues \n Type: ' + req.body.event_type + '\nDescription: ' + req.body.object_attributes.description
   })
+  try {
+    await notice.save()
+  } catch (error) {
+    console.log(error)
+  }
 }
 module.exports = gitlabController
