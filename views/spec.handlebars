@@ -1,14 +1,16 @@
 <h2>Specific Gitlab Group or Project</h2>
-
+{{#if subGroups}}
 {{#each subGroups}}
 
 <form action="{{id}}/webhook" method="get">
 <button id="group" type="submit">{{name}}</button>
 </form>
 {{/each}}
-
+{{/if}}
+{{#if projects}}
 {{#each projects}}
 <form action="{{id}}/webhook" method="get">
 <button id="project" type="submit">{{name}}</button>
 </form>
 {{/each}}
+{{/if}}

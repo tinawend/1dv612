@@ -57,8 +57,8 @@ gitlabController.getSpecificGroup = async (req, res) => {
 
 gitlabController.webhook = async (req, res) => {
   const token = req.session.token
-
-  document.getElementById('group').addEventListener('click', async function () {
+  // try catch ????
+  try {
     const fetchIssues = await fetch(`https://gitlab.lnu.se/api/v4/groups/${req.params.id}/issues`, {
       headers: { Authorization: `Bearer ${token}` }
     })
@@ -68,19 +68,24 @@ gitlabController.webhook = async (req, res) => {
       description: issue.description
     }))
     res.render('webhook', { issues })
-  })
-  document.getElementById('project').addEventListener('click', async function () {
+  } catch (error) {
+    console.log(error)
+  }
+  try {
     const fetchProjectIssues = await fetch(`https://gitlab.lnu.se/api/v4/projects/${req.params.id}/issues`, {
       headers: { Authorization: `Bearer ${token}` }
     })
     const projNotes = await fetchProjectIssues.json()
-
     const issuesproj = await projNotes.map(issue => ({
       title: issue.title,
       description: issue.description
     }))
     res.render('webhook', { issuesproj })
-  })
+  } catch (error) {
+    console.log(error)
+  }
+
+  // res.render('webhook', { issues, issuesproj })
 }
 
 gitlabController.socket = async (req, res) => {
