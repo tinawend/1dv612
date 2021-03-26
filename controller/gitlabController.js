@@ -56,12 +56,13 @@ gitlabController.getSpecificGroup = async (req, res) => {
 }
 
 gitlabController.webhook = async (req, res) => {
-  const token = req.session.token
-  const fetchIssues = await fetch(`https://gitlab.lnu.se/api/v4/groups/${req.params.id}/issues`, {
-    headers: { Authorization: `Bearer ${token}` }
-  })
-  const result = await fetchIssues.json()
-  const issues = await result.map(issue => ({
+  // const token = req.session.token
+  // const fetchIssues = await fetch(`https://gitlab.lnu.se/api/v4/groups/${req.params.id}/issues`, {
+  //   headers: { Authorization: `Bearer ${token}` }
+  // })
+  // const result = await fetchIssues.json()
+  const notifictions = await Notification.find({})
+  const issues = await notifictions.map(issue => ({
     title: issue.title,
     description: issue.description
   }))
