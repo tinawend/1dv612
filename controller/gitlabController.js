@@ -38,7 +38,7 @@ gitlabController.getSpecificGroup = async (req, res) => {
   const fetchSpec = await fetch(`https://gitlab.lnu.se/api/v4/groups/${req.params.id}/subgroups?min_access_level=50`, {
     headers: { Authorization: `Bearer ${token}` }
   })
-  const fetchproj = await fetch(`https://gitlab.lnu.se/api/v4/groups/${req.params.id}/projects?min_access_level=50`, {
+  const fetchproj = await fetch(`https://gitlab.lnu.se/api/v4/groups/${req.params.id}/projects?min_access_level=40`, {
     headers: { Authorization: `Bearer ${token}` }
   })
   const result = await fetchSpec.json()
