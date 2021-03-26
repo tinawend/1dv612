@@ -1,6 +1,7 @@
 const axios = require('axios')
 const gitlabController = {}
 const fetch = require('node-fetch')
+const Notice = require('../model/notice')
 
 gitlabController.login = (req, res) => {
   res.redirect(`https://gitlab.lnu.se/oauth/authorize?client_id=${process.env.APPLICATION_ID}&redirect_uri=https://notifytw222eu.herokuapp.com/auth&response_type=code&state=STATE&scope=api`)
@@ -82,6 +83,8 @@ gitlabController.socket = async (req, res) => {
     type: req.body.event_type,
     id: req.body.object_attributes.iid
   }
+  const notice = new Notice(issues)
+  await notice.save()
   io.emit('webhook', issues)
 
   await axios.post(`${process.env.LINK_SLACK}`, {
