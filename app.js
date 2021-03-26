@@ -8,6 +8,7 @@ const session = require('express-session')
 var hbs = require('express-handlebars')
 
 require('dotenv').config()
+require('./db/dbConnect')
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
