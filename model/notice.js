@@ -12,5 +12,5 @@ const NoticeSchema = new Schema({
   type: { type: String },
   id: { type: String }
 })
-const Notice = mongoose.model('Notice', NoticeSchema)
-module.export = Notice
+const Notification = mongoose.model('Notification', NoticeSchema)
+module.export = Notification

@@ -1,7 +1,7 @@
 const axios = require('axios')
 const gitlabController = {}
 const fetch = require('node-fetch')
-const Notice = require('../model/notice')
+const Notification = require('../model/notice')
 
 gitlabController.login = (req, res) => {
   res.redirect(`https://gitlab.lnu.se/oauth/authorize?client_id=${process.env.APPLICATION_ID}&redirect_uri=https://notifytw222eu.herokuapp.com/auth&response_type=code&state=STATE&scope=api`)
@@ -88,7 +88,7 @@ gitlabController.socket = async (req, res) => {
   await axios.post(`${process.env.LINK_SLACK}`, {
     text: 'there has been a change on gitlab issues \n Type: ' + req.body.event_type + '\nDescription: ' + req.body.object_attributes.description
   })
-  const notice = new Notice({ issues })
+  const notice = new Notification({ issues })
   try {
     await notice.save()
   } catch (error) {
