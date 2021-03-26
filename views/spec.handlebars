@@ -8,5 +8,7 @@
 {{/each}}
 
 {{#each projects}}
-<p>{{name}}</p>
+<form action="{{id}}/webhook" method="get">
+<button type="submit">{{name}}</button>
+</form>
 {{/each}}
