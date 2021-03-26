@@ -63,13 +63,17 @@ gitlabController.webhook = async (req, res) => {
   const fetchProjectIssues = await fetch(`https://gitlab.lnu.se/api/v4/projects/${req.params.id}/issues`, {
     headers: { Authorization: `Bearer ${token}` }
   })
-  const notifictions = await fetchIssues.json() || await fetchProjectIssues.json()
+  const notifictions = await fetchIssues.json()
+  const projNotes = await fetchProjectIssues.json()
   const issues = await notifictions.map(issue => ({
     title: issue.title,
     description: issue.description
   }))
-
-  res.render('webhook', { issues })
+  const issuesproj = await projNotes.map(issue => ({
+    title: issue.title,
+    description: issue.description
+  }))
+  res.render('webhook', { issues, issuesproj })
 }
 
 gitlabController.socket = async (req, res) => {

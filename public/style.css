@@ -44,18 +44,22 @@ nav	a:hover, nav a:active {
 }
 .issueTitle {
     background-color: #ff5bb0;
+    font-family: 'Lucida Grande', 'Helvetica Neue', Brush Script MT, Brush Script Std, cursive;
     text-align: center;
-    height: 60px;
+    height: 50px;
     width: 300px;
+    border-radius: 25px 25px 0px 0px;
     border-bottom:1px solid #ff5bb0;
     border: 1px solid #ff5bb0;
     overflow: auto;
 } 
 .issueText {
     background-color: rgb(247, 211, 233);
+    font-family: 'Lucida Grande', 'Helvetica Neue', Brush Script MT, Brush Script Std, cursive;
     text-align: left;
     width: 300px;
     height: 150px;
+    border-radius: 0px 0px 25px 25px;
     border-top: 1px solid #ff5bb0;
     border: 1px solid #ff5bb0;
     overflow: auto;
