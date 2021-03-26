@@ -88,7 +88,7 @@ gitlabController.socket = async (req, res) => {
   await axios.post(`${process.env.LINK_SLACK}`, {
     text: 'there has been a change on gitlab issues \n Type: ' + req.body.event_type + '\nDescription: ' + req.body.object_attributes.description
   })
-  const notice = new Notification({ issues })
+  const notice = new Notification(issues)
   try {
     await notice.save()
   } catch (error) {

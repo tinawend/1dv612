@@ -13,4 +13,4 @@ const NoticeSchema = new Schema({
   id: { type: String }
 })
 const Notification = mongoose.model('Notification', NoticeSchema)
-module.export = Notification
+module.exports = Notification
