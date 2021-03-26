@@ -1,12 +1,12 @@
 <nav>
     <ul>
-{{!-- {{#if sessuser}} --}}
-        {{!-- <li><a href="/">Hem</a> </li> --}}
-        {{!-- {{else}} --}}
+{{#if token}}
+        <li><a href="/">Hem</a> </li>
+        <li><a href="/selectGroup">See available groups</a> </li>
+        {{else}}
 
         <li><a href="/">Hem</a> </li>
         <li><a href="/getGitlab">Logga in</a> </li>
-        <li><a href="/selectGroup">See available groups</a> </li>
-        {{!-- {{/if}} --}}
+        {{/if}}
     </ul>
 </nav>
