@@ -1,13 +1,13 @@
 const frontPageController = {}
-// const fetch = require('node-fetch')
 
+const Notification = require('../model/notice')
 frontPageController.index = async (req, res) => {
-  // console.log(token)
-
-  // const projects = await result.map(group => ({
-  //   name: group.name_with_namespace
-  // }))
-
-  res.render('home')
+  const notifictions = await Notification.find({})
+  const todaysDate = new Date().toISOString().slice(0, 10)
+  const issues = await notifictions.filter(issue => issue.updated === todaysDate).map(issue => ({
+    title: issue.title,
+    description: issue.description
+  }))
+  res.render('home', { issues })
 }
 module.exports = frontPageController

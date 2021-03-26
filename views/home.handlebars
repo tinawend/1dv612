@@ -1,7 +1,17 @@
 <p>Home</p>
 {{#if token}}
 <p>You are signed in</p>
-
+<p>Here are the all new notices for today:</p>
+{{#each issues}}
+<div class="issue">
+    <div class="issueTitle">
+        <p>{{title}}</p>
+    </div>
+    <div class="issueText">
+        <p>{{description}}</p>
+    </div>
+</div>
+{{/each}}
 {{else}}
 <p>not signed in yet</p>
 {{/if}}
