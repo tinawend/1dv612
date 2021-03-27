@@ -63,7 +63,7 @@ gitlabController.getSpecificGroup = async (req, res) => {
     id: project.id
   }))
 
-  res.render('spec', { subGroups, projects })
+  res.render('spec', { subGroups, projects, token })
 }
 
 gitlabController.webhook = async (req, res) => {
@@ -77,7 +77,7 @@ gitlabController.webhook = async (req, res) => {
       title: issue.title,
       description: issue.description
     }))
-    res.render('webhook', { issues })
+    res.render('webhook', { issues, token })
   } catch (error) {
     console.log(error)
   }
@@ -90,7 +90,7 @@ gitlabController.webhook = async (req, res) => {
       title: issue.title,
       description: issue.description
     }))
-    res.render('webhook', { issuesproj })
+    res.render('webhook', { issuesproj, token })
   } catch (error) {
     console.log(error)
   }
@@ -111,12 +111,23 @@ gitlabController.socket = async (req, res) => {
     time: req.body.object_attributes.updated_at.substring(11, 19),
     type: req.body.event_type,
     id: req.body.object_attributes.iid
+
   }
   io.emit('webhook', issues)
+  const radios = document.getElementsByName('comments')
+  if (radios['1'].checked) {
+    await axios.post(`${process.env.LINK_SLACK}`, {
+      text: 'there has been a change on gitlab issues \n Type: ' + req.body.event_type + '\nDescription: ' + req.body.object_attributes.description
+    })
+    // do whatever you want with the checked radio
+  } else if (radios['0'].checked) {
+    if (req.body.event_type === 'note') {
+      await axios.post(`${process.env.LINK_SLACK}`, {
+        text: 'there has been a change on gitlab issues \n Type: ' + req.body.event_type + '\nDescription: ' + req.body.object_attributes.description
+      })
+    }
+  }
 
-  await axios.post(`${process.env.LINK_SLACK}`, {
-    text: 'there has been a change on gitlab issues \n Type: ' + req.body.event_type + '\nDescription: ' + req.body.object_attributes.description
-  })
   const notice = new Notification(issues)
   try {
     await notice.save()
