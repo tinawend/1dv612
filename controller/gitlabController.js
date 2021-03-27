@@ -114,20 +114,22 @@ gitlabController.socket = async (req, res) => {
 
   }
   io.emit('webhook', issues)
-  const radios = document.getElementsByName('comments')
-  if (radios['1'].checked) {
-    await axios.post(`${process.env.LINK_SLACK}`, {
-      text: 'there has been a change on gitlab issues \n Type: ' + req.body.event_type + '\nDescription: ' + req.body.object_attributes.description
-    })
-    // do whatever you want with the checked radio
-  } else if (radios['0'].checked) {
-    if (req.body.event_type === 'note') {
-      await axios.post(`${process.env.LINK_SLACK}`, {
-        text: 'there has been a change on gitlab issues \n Type: ' + req.body.event_type + '\nDescription: ' + req.body.object_attributes.description
-      })
+  const btn = document.querySelector('#btn')
+  // handle click button
+  btn.onclick = function () {
+    const rbs = document.querySelectorAll('input[name="choice"]')
+    let selectedValue
+    for (const rb of rbs) {
+      if (rb.checked) {
+        selectedValue = rb.value
+        break
+      }
     }
+    alert(selectedValue)
   }
-
+  await axios.post(`${process.env.LINK_SLACK}`, {
+    text: 'there has been a change on gitlab issues \n Type: ' + req.body.event_type + '\nDescription: ' + req.body.object_attributes.description
+  })
   const notice = new Notification(issues)
   try {
     await notice.save()
