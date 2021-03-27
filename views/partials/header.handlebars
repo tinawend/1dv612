@@ -4,12 +4,15 @@
         <li><a href="/">Hem</a> </li>
         <li><a href="/selectGroup">See available groups</a> </li>
         <form action="/logout" method="POST">
-        <button type="submit" >Sign out</button>
+        <button id="logoutbtn" type="submit" >Sign out</button>
         </form>
         {{else}}
 
         <li><a href="/">Hem</a> </li>
         <li><a href="/getGitlab">Logga in</a> </li>
+        <form action="/logout" method="POST">
+        <button id="logoutbtn" type="submit" >Sign out</button>
+        </form>
         {{/if}}
     </ul>
 </nav>

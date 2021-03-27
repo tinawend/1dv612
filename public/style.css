@@ -64,3 +64,6 @@ nav	a:hover, nav a:active {
     border: 1px solid #ff5bb0;
     overflow: auto;
 }
+#logoutbtn {
+    float: right;
+}
