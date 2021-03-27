@@ -10,11 +10,6 @@ frontPageController.index = async (req, res) => {
     description: issue.description
   }))
 
-  const red = document.getElementById('red')
-  if (red.checked) {
-    req.session.red = 'red'
-  }
-
   res.render('home', { issues, token })
 }
 module.exports = frontPageController
