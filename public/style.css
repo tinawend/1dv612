@@ -66,6 +66,7 @@ nav	a:hover, nav a:active {
 }
 #logoutbtn {
     float: right;
+    margin-top: 10px;
 }
 button {
     background-color: plum;
