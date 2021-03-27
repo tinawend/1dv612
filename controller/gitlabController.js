@@ -114,19 +114,7 @@ gitlabController.socket = async (req, res) => {
 
   }
   io.emit('webhook', issues)
-  const btn = document.querySelector('#btn')
-  // handle click button
-  btn.onclick = function () {
-    const rbs = document.querySelectorAll('input[name="choice"]')
-    let selectedValue
-    for (const rb of rbs) {
-      if (rb.checked) {
-        selectedValue = rb.value
-        break
-      }
-    }
-    alert(selectedValue)
-  }
+
   await axios.post(`${process.env.LINK_SLACK}`, {
     text: 'there has been a change on gitlab issues \n Type: ' + req.body.event_type + '\nDescription: ' + req.body.object_attributes.description
   })
