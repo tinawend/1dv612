@@ -13,26 +13,9 @@
 
     {{{body}}}
     
-  <p>Please select setting:</p>
-    <form>
-        <input type="radio" name="choice" value="yes"> Yes
-        <input type="radio" name="choice" value="no"> No
-        <input type="button" id="btn" value="Show Selected Value">
-    </form>
 
-    <script>  const btn = document.querySelector('#btn')
-  // handle click button
-  btn.onclick = function () {
-    const rbs = document.querySelectorAll('input[name="choice"]')
-    let selectedValue
-    for (const rb of rbs) {
-      if (rb.checked) {
-        selectedValue = rb.value
-        break
-      }
-    }
-    req.session.selected = selectedValue
-  }</script>
+
+
 <script src="/socket.js"></script>
 </body>
 </html>
