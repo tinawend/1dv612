@@ -10,18 +10,11 @@ frontPageController.index = async (req, res) => {
     description: issue.description
   }))
 
-  const btn = document.querySelector('#btn')
-  btn.onclick = function () {
-    const rbs = document.querySelectorAll('input[name="choice"]')
-    let selectedValue
-    for (const rb of rbs) {
-      if (rb.checked) {
-        selectedValue = rb.value
-        break
-      }
-    }
-    req.session.selected = selectedValue
+  const red = document.getElementById('red')
+  if (red.checked) {
+    req.session.red = 'red'
   }
+
   res.render('home', { issues, token })
 }
 module.exports = frontPageController

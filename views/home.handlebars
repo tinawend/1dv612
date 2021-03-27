@@ -18,8 +18,18 @@
 
 
   <p>Please select setting:</p>
-    <form>
-        <input type="radio" name="choice" value="yes"> Yes
-        <input type="radio" name="choice" value="no"> No
-        <input type="button" id="btn" value="Show Selected Value">
-    </form>
+<form>
+  What color do you prefer?<br>
+  <input type="radio" name="colors" id="red">Red<br>
+  <input type="radio" name="colors" id="blue">Blue
+</form>
+<script>
+<button onclick="check()">Check "Red"</button>
+<button onclick="uncheck()">check blue</button>
+function check() {
+  document.getElementById("red").checked = true;
+}
+function uncheck() {
+  document.getElementById("blue").checked = true;
+}
+</script>
