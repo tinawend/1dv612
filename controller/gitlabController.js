@@ -18,6 +18,17 @@ gitlabController.auth = async (req, res) => {
     })
 }
 
+gitlabController.logout = async (req, res) => {
+  req.session.destroy(error => {
+    if (error) {
+      console.log(error)
+    } else {
+      res.clearCookie('sid')
+      res.redirect('/')
+    }
+  })
+}
+
 gitlabController.selectGroup = async (req, res) => {
   const token = req.session.token
   const fetchGroups = await fetch('https://gitlab.lnu.se/api/v4/groups?min_access_level=40', {
@@ -57,7 +68,6 @@ gitlabController.getSpecificGroup = async (req, res) => {
 
 gitlabController.webhook = async (req, res) => {
   const token = req.session.token
-  // try catch ????
   try {
     const fetchIssues = await fetch(`https://gitlab.lnu.se/api/v4/groups/${req.params.id}/issues`, {
       headers: { Authorization: `Bearer ${token}` }
