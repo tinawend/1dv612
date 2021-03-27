@@ -10,9 +10,11 @@
 
         <li><a href="/">Hem</a> </li>
         <li><a href="/getGitlab">Logga in</a> </li>
+        <div id="signout">
         <form action="/logout" method="POST">
-        <button id="logoutbtn" type="submit" >Sign out</button>
+        <button type="submit" >Sign out</button>
         </form>
+        </div>
         {{/if}}
     </ul>
 </nav>

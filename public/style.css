@@ -64,13 +64,18 @@ nav	a:hover, nav a:active {
     border: 1px solid #ff5bb0;
     overflow: auto;
 }
-#logoutbtn {
+#signout{
+    margin-right: 50px;
     float: right;
-    margin-top: 0px;
+   
 }
-button {
-    background-color: plum;
-    border-radius: 10px;
-    margin-top: 10px;
+#signout button {
+    background: none;
+    border: none;
     cursor: pointer;
+    color: whitesmoke;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+#signout button:hover {
+    color: #ff5bb0;
 }
