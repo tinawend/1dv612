@@ -13,5 +13,17 @@ socket.on('webhook', function (data) {
   desc.textContent = 'Description: ' + data.description
 
   const title = document.querySelector('#titlenew')
-  title.textContent = 'Description: ' + data.title
+  title.textContent = 'Title: ' + data.title
 })
+
+function option () {
+  document.querySelector('#issues').addEventListener('click', function () {
+    const data = 'issueOption'
+    socket.emit('click', data)
+  })
+  document.querySelector('#allNote').addEventListener('click', function () {
+    const data = 'allOption'
+    socket.emit('click', data)
+  })
+}
+option()

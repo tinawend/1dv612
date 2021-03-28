@@ -1,4 +1,7 @@
 <p>Home</p>
+{{#if token}}
+<p>You are signed in</p>
+<h3>Notification: </h3>
 <div class="issue">
     <div class="issueTitle">
         <p id="titlenew"></p>
@@ -7,10 +10,8 @@
         <p id="desc"></p>
     </div>
 </div>
-{{#if token}}
-<p>You are signed in</p>
-<p>Here are the all new notices for today:</p>
 
+<p>Here are the all new notices for today:</p>
 {{#each issues}}
 <div class="issue">
     <div class="issueTitle">

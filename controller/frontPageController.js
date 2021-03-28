@@ -12,4 +12,8 @@ frontPageController.index = async (req, res) => {
 
   res.render('home', { issues, token })
 }
+
+frontPageController.settings = async (req, res) => {
+  res.render('settings')
+}
 module.exports = frontPageController
