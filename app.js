@@ -38,14 +38,14 @@ io.on('connection', (socket) => {
   socket.on('click', info)
   function info (data) {
     console.log(data)
-    const setting = new Setting({
-      setting: data
-    })
     if (Setting.count() === 0) {
+      const setting = new Setting({
+        setting: data
+      })
       setting.save()
     } else {
       Setting.remove({})
-      setting.save()
+      // setting.save()
     }
   }
 })
