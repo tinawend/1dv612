@@ -6,7 +6,7 @@ const io = require('socket.io')(server)
 const router = require('./routes/routes')
 const session = require('express-session')
 var hbs = require('express-handlebars')
-const Setting = require('./model/setting')
+// const Setting = require('./model/setting')
 require('dotenv').config()
 require('./db/dbConnect')
 
@@ -35,14 +35,14 @@ app.use('/', router)
 io.on('connection', (socket) => {
   console.log('connect')
   socket.emit('message', 'You are connected!')
-  socket.on('click', info)
-  function info (data) {
-    console.log(data)
-    Setting.remove({})
-    const setting = new Setting({
-      setting: data
-    })
-    setting.save()
-  }
+  // socket.on('click', info)
+  // function info (data) {
+  //   console.log(data)
+  //   Setting.remove({})
+  //   const setting = new Setting({
+  //     setting: data
+  //   })
+  //   setting.save()
+  // }
 })
 server.listen(process.env.PORT || port)
