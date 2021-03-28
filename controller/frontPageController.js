@@ -14,6 +14,8 @@ frontPageController.index = async (req, res) => {
 }
 
 frontPageController.settings = async (req, res) => {
+  const io = req.app.get('socketio')
+  io.emit('settings')
   res.render('settings')
 }
 module.exports = frontPageController

@@ -17,11 +17,11 @@ socket.on('webhook', function (data) {
 })
 
 function option () {
-  document.querySelector('#issues').addEventListener('click', function () {
+  document.getElementById('issues').addEventListener('click', function () {
     const data = 'issueOption'
     socket.emit('click', data)
   })
-  document.querySelector('#allNote').addEventListener('click', function () {
+  document.getElementById('allNote').addEventListener('click', function () {
     const data = 'allOption'
     socket.emit('click', data)
   })

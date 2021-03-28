@@ -38,7 +38,7 @@ io.on('connection', (socket) => {
   socket.on('click', info)
   function info (data) {
     console.log(data)
-    Setting.remove({})
+    Setting.drop()
     const setting = new Setting({
       setting: data
     })
