@@ -16,14 +16,14 @@ socket.on('webhook', function (data) {
   title.textContent = 'Title: ' + data.title
 })
 
-function option () {
-  document.getElementById('issues').addEventListener('click', function () {
-    const data = 'issueOption'
-    socket.emit('click', data)
-  })
-  document.getElementById('allNote').addEventListener('click', function () {
-    const data = 'allOption'
-    socket.emit('click', data)
-  })
-}
-option()
+// function option () {
+//   document.getElementById('issues').addEventListener('click', function () {
+//     const data = 'issueOption'
+//     socket.emit('click', data)
+//   })
+//   document.getElementById('allNote').addEventListener('click', function () {
+//     const data = 'allOption'
+//     socket.emit('click', data)
+//   })
+// }
+// option()
