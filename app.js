@@ -38,15 +38,11 @@ io.on('connection', (socket) => {
   socket.on('click', info)
   function info (data) {
     console.log(data)
-    if (Setting.count() === 0) {
-      const setting = new Setting({
-        setting: data
-      })
-      setting.save()
-    } else {
-      Setting.remove({})
-      // setting.save()
-    }
+    Setting.remove({})
+    const setting = new Setting({
+      setting: data
+    })
+    setting.save()
   }
 })
 server.listen(process.env.PORT || port)
