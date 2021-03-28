@@ -11,4 +11,5 @@ router.get('/selectGroup/:id', gitlabController.getSpecificGroup)
 router.get('/selectGroup/:id/webhook', gitlabController.webhook)
 router.post('/selectGroup/:id/webhook', gitlabController.socket)
 router.get('/settings', frontPageController.settings)
+router.post('/settings', frontPageController.send)
 module.exports = router
